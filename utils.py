@@ -20,7 +20,8 @@ def normalise_data(raw_data, type, n_training, n_trading):
         training_data_normalised =  (training_data - mu) / sigma
         trading_data_normalised =  (trading_data - mu) / sigma
     if (type == "distances2"):
-        normalised_data = np.cumprod(1 + raw_data / raw_data.iloc[0, :])
+        normalised_data = raw_data / raw_data.iloc[0, :]
+        #normalised_data = np.cumprod(1 + raw_data / raw_data.iloc[0, :])
         training_data_normalised = normalised_data.iloc[:n_training - 1,:]
         trading_data_normalised = normalised_data.iloc[-n_trading:, :]
     if (type == "cointegration"):
